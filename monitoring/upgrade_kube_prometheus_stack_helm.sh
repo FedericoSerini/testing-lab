@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Read and trim user and password
+# Read password
 pass=$(<admin-pwd.txt)
 
-# Substitute user and password
+# Substitute password
 sed -e "s/{_PW_}/$pass/g" values.yaml > values_proxy.yaml
 
-# Apply the secret
+# Upgrade helm
 helm upgrade prometheus-monitoring prometheus-community/kube-prometheus-stack --values values_proxy.yaml
